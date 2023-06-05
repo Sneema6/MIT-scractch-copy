@@ -1,4 +1,4 @@
-# Scratch starter project
+# MIT Scratch Copy
 
 To get started:
 
