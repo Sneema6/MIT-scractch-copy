@@ -8,35 +8,43 @@ export default function Sidebar({
   imagePosition,
   setRotationAngle,
   rotationAngle,
+  handleClick,
+  rotateClockwise,
+  rotateCounterclockwise,
+  randomPosition,
 }) {
   const dispatch = useDispatch();
 
   const drag = (event, buttonId) => {
     dispatch(setDraggedButtonId(buttonId));
+    console.log(buttonId, "buttonId");
+    // dataTransfer.clearData();
     event.dataTransfer.setData("text/plain", buttonId);
-    event.dataTransfer.setDragImage(event.target, 0, 0);
+    const divClone = event.currentTarget.parentNode.cloneNode(true);
+    console.log("divClone", divClone);
+    event.dataTransfer.setDragImage(divClone, 0, 0);
   };
 
-  const handleClick = () => {
-    setImagePosition({ x: imagePosition.x + 10, y: imagePosition.y + 0 });
-  };
-  const rotateClockwise = () => {
-    setRotationAngle((prev) => prev + 15);
-  };
+  // const handleClick = () => {
+  //   setImagePosition({ x: imagePosition.x + 10, y: imagePosition.y + 0 });
+  // };
+  // const rotateClockwise = () => {
+  //   setRotationAngle((prev) => prev + 15);
+  // };
 
-  const rotateCounterclockwise = () => {
-    setRotationAngle((prev) => prev - 15);
-  };
+  // const rotateCounterclockwise = () => {
+  //   setRotationAngle((prev) => prev - 15);
+  // };
 
-  const randomPosition = () => {
-    const layoutWidth = 300; // Adjust this value to match the width of your layout
-    const layoutHeight = 400; // Adjust this value to match the height of your layout
+  // const randomPosition = () => {
+  //   const layoutWidth = 300; // Adjust this value to match the width of your layout
+  //   const layoutHeight = 400; // Adjust this value to match the height of your layout
 
-    const randomX = Math.floor(Math.random() * layoutWidth);
-    const randomY = Math.floor(Math.random() * layoutHeight);
+  //   const randomX = Math.floor(Math.random() * layoutWidth);
+  //   const randomY = Math.floor(Math.random() * layoutHeight);
 
-    setImagePosition({ x: randomX, y: randomY });
-  };
+  //   setImagePosition({ x: randomX, y: randomY });
+  // };
   return (
     <div className="w-60 flex-none h-full overflow-y-auto flex flex-col items-start p-2 border-r border-gray-200">
       <div className="font-bold"> {"Events"} </div>
@@ -52,7 +60,11 @@ export default function Sidebar({
       <button
         onClick={handleClick}
         draggable="true"
-        onDragStart={(event) => drag(event, event.target)}
+        onDragStart={(event) => {
+          drag(event, event.target);
+          console.log("target", event.target);
+        }}
+        id="button A"
       >
         <div className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
           {"Move 10 steps"}
@@ -62,6 +74,7 @@ export default function Sidebar({
         onClick={rotateCounterclockwise}
         draggable="true"
         onDragStart={(event) => drag(event, event.target)}
+        id="button B"
       >
         <div className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
           {"Turn "}
