@@ -1,4 +1,4 @@
-# MIT Scractch Copy
+# MIT Scratch Copy
 
 To get started:
 
