@@ -1,16 +1,21 @@
 import React from "react";
 
-export default function CatSprite() {
+export default function CatSprite({ position, rotationAngle }) {
+  const { x, y } = position;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="95.17898101806641"
-      height="100.04156036376953"
-      viewBox="0.3210171699523926 0.3000000357627869 95.17898101806641 100.04156036376953"
+      width="200.17898101806641"
+      height="200.04156036376953"
+      viewBox="0 0 200 200"
       version="1.1"
       xmlSpace="preserve"
+      style={{
+        transform: `rotate(${rotationAngle}deg) translateX(${x}px) translateY(${y}px)`,
+        // transformOrigin: "center",
+      }}
     >
-      <g>
+      <g transform={`rotate(${rotationAngle}, 100, 100)`}>
         <g id="Page-1" stroke="none" fillRule="evenodd">
           <g id="costume1">
             <g id="costume1.1">
