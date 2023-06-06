@@ -6,11 +6,6 @@ const draggedButtonIdReducer = (state = null, action) => {
   switch (action.type) {
     case SET_DRAGGED_BUTTON_ID:
       return action.payload;
-    // case REMOVE_BUTTON:
-    //   if (state === action.payload) {
-    //     return null;
-    //   }
-    //   return state;
     default:
       return state;
   }
